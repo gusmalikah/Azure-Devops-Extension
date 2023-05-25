@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <script src="lib/VSS.SDK.min.js"></script>
+    <style>
+      body {
+        text-align: center;
+        margin: 30px auto 0px auto;
+        font-size: 18px;
+        background-color: #d3d3d3;
+      }
+
+      h1 {
+        display: block;
+        margin: 0px 0px 20px 0px;
+        text-align: center;
+      }
+
+      form > label {
+        text-align: left;
+        margin-right: 10px;
+        margin-bottom: 30px;
+      }
+
+      form > input {
+        text-align: left;
+        margin-bottom: 30px;
+        width: 120px;
+        height: 30px;
+        border-radius: 15px;
+      }
+      h6 {
+        margin: 0px;
+        font-size: 14px;
+      }
+      .button {
+        text-align: center;
+      }
+
+      .result {
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 15px;
+      }
+
+      button {
+        margin-top: 60px;
+        margin-bottom: 20px;
+        appearance: button;
+        background-color: #000;
+        background-image: none;
+        border: 1px solid #000;
+        border-radius: 4px;
+        box-shadow: #fff 4px 4px 0 0, #000 4px 4px 0 1px;
+        box-sizing: border-box;
+        color: #fff;
+        cursor: pointer;
+        display: inline-block;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 20px;
+        overflow: visible;
+        padding: 12px 40px;
+        text-align: center;
+        text-transform: none;
+        touch-action: manipulation;
+        user-select: none;
+        -webkit-user-select: none;
+        vertical-align: middle;
+        white-space: nowrap;
+      }
+
+      button:focus {
+        text-decoration: none;
+      }
+
+      button:hover {
+        text-decoration: none;
+      }
+
+      button:active {
+        box-shadow: rgba(0, 0, 0, 0.125) 0 3px 5px inset;
+        outline: 0;
+      }
+
+      button:not([disabled]):active {
+        box-shadow: #fff 2px 2px 0 0, #000 2px 2px 0 1px;
+        transform: translate(2px, 2px);
+      }
+    </style>
+    <script type="text/javascript">
+      VSS.init();
+      VSS.ready(function () {
+        document.getElementById("name").innerText =
+          VSS.getWebContext().user.name;
+      });
+    </script>
+  </head>
+  <body>
+    <h1>Sprint Velocity Calculator</h1>
+    <form id="inputForm">
+      <label for="velocity">Average Sprint Velocity:</label>
+      <input type="number" id="velocity" required min="1" /><br />
+      <label for="developers">Number of Developers:</label>
+      <input type="number" id="developers" required value="10" min="1" /><br />
+      <label for="sprintDays">Sprint Days:</label>
+      <input type="number" id="sprintDays" required value="10" min="1" /><br />
+      <label for="daysOff">Total Days Off (Individually):</label>
+      <input type="number" id="daysOff" required min="0" /><br />
+      <h6>
+        (1 person off for 10 days, 2 person for 2 days and 1 person for 1 day.
+        Total willl be 15)
+      </h6>
+      <div class="button">
+        <button type="submit">Calculate</button>
+      </div>
+    </form>
+    <div class="result" id="result"></div>
+  </body>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const form = document.getElementById("inputForm");
+      const resultDiv = document.getElementById("result");
+
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        const velocity = parseFloat(document.getElementById("velocity").value);
+        const developers = parseInt(
+          document.getElementById("developers").value
+        );
+        const sprintDays = parseInt(
+          document.getElementById("sprintDays").value
+        );
+        const daysOff = parseInt(document.getElementById("daysOff").value);
+
+        const totalDays = developers * sprintDays;
+        const workDays = totalDays - daysOff;
+        const totalVelocity = velocity * (workDays / totalDays);
+
+        if (totalVelocity <= 0) {
+          resultDiv.textContent = "Total Sprint Velocity is <= 0";
+        } else {
+          resultDiv.textContent =
+            "Total Sprint Velocity: " + totalVelocity.toFixed(2);
+        }
+      });
+    });
+  </script>
+</html>

@@ -1,0 +1,43 @@
+{
+  "manifestVersion": 1,
+  "id": "Sprint-velocity",
+  "publisher": "MalikHannan",
+  "version": "1.0.9",
+  "name": "Sprint Velocity Calculator",
+  "description": "This extension enables you to calculate sprint velocity",
+  "public": false,
+  "categories": ["Azure Boards"],
+  "targets": [
+    {
+      "id": "Microsoft.VisualStudio.Services"
+    }
+  ],
+  "contributions": [
+    {
+      "id": "Sprint-velocity",
+      "type": "ms.vss-web.hub",
+      "targets": ["ms.vss-work-web.work-hub-group"],
+      "properties": {
+        "name": "Sprint Velocity Calculator",
+        "uri": "index.html",
+        "dynamic": true,
+        "order": 100
+      }
+    }
+  ],
+  "icons": {
+    "default": "a.png",
+    "large": "a.png"
+  },
+  "files": [
+    {
+      "path": "index.html",
+      "addressable": true
+    },
+    {
+      "path": "node_modules/vss-web-extension-sdk/lib",
+      "addressable": true,
+      "packagePath": "lib"
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="index.css" />
+    <script src="index.js"></script>
+  </head>
+  <body>
+    <h1>Sprint Velocity Calculator</h1>
+    <form id="inputForm">
+      <label for="velocity">Average Sprint Velocity:</label>
+      <input type="number" id="velocity" required min="1" /><br />
+      <label for="developers">Number of Developers:</label>
+      <input type="number" id="developers" required value="10" min="1" /><br />
+      <label for="sprintDays">Sprint Days:</label>
+      <input type="number" id="sprintDays" required value="10" min="1" /><br />
+      <label for="daysOff">Total Days Off (Individually):</label>
+      <input type="number" id="daysOff" required min="0" /><br />
+      <h6>
+        (1 person off for 10 days, 2 person for 2 days and 1 person for 1 day.
+        Total willl be 15)
+      </h6>
+      <div class="button">
+        <button type="submit">Calculate</button>
+      </div>
+    </form>
+    <div class="result" id="result"></div>
+  </body>
+</html>

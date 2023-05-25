@@ -1,0 +1,17 @@
+{
+  "name": "Sprint Velocity Calculator",
+  "version": "1.0",
+  "manifest_version": 3,
+  "description": "Sprint velocity calculator helps the teams to calculate sprint velocity for the upcoming sprint",
+  "action": {
+    "default_title": "Sprint Velocity Calculator",
+    "default_icon": "./a.png",
+    "default_popup": "index.html"
+  },
+  "icons": {
+    "16": "./a.png",
+    "48": "./a.png",
+    "128": "./a.png"
+  },
+  "permissions": ["activeTab", "scripting"]
+}
